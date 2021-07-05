@@ -1,0 +1,409 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    
+    <title>CSS 画像マスクサンプル</title>
+    
+    <style>
+        body {
+            font-family: sans-serif;
+        }
+        
+        .sample {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .image-wrapper {
+            width: 400px;
+            height: 300px;
+        }
+        
+        /* mask-image 画像用 */
+        .sample__mask .image-wrapper img {
+            mask-image: url("./images/star.svg");
+            mask-repeat: no-repeat;
+            mask-position: 0 0;
+            mask-size: 50%;
+            -webkit-mask-image: url("./images/star.svg");
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: 0 0;
+            -webkit-mask-size: 50%;
+        }
+        
+        /* clip-path 画像用 */
+        .sample__clip .image-wrapper img {
+            transition: clip-path 0.5s;
+            clip-path: insert 50px round 20px );
+        }
+        
+        /* background-clip: text 文字 */
+        .sample__text .image-wrapper {
+            background-color: #333;
+            background-image: url( https://picsum.photos/id/200/400/300 );
+            background-clip: text;
+            -webkit-background-clip: text;
+            text-align: center;
+        }
+        
+        .sample__text .image-wrapper span {
+            font-size: 120px;
+            font-weight: bold;
+            color: transparent;
+        }
+        
+        .input-wrapper_text input[type="text"] {
+            padding: 8px;
+            font-size: 20px;
+        }
+        
+        /* キャンバス */
+        #canvas {
+            width: 800px;
+            height: 600px;
+            border: 4px solid #000;
+        }
+        
+    </style>
+</head>
+<body>
+    
+    <div>
+        <h1>
+            以下のサイトのサンプル<br>
+            https://ics.media/entry/210701/
+        </h1>
+    </div>
+    
+    <!-- mask-imageのサンプル -->
+    <div class="sample sample__mask">
+        <div class="image-wrapper">
+            <img src="https://picsum.photos/id/200/400/300" alt="マスク用サンプル画像">
+        </div>
+        
+        <div class="input-wrapper input-wrapper__mask">
+
+            <h2>
+                mask-imageのサンプル
+            </h2>
+
+            <p class="mask-position">
+                mask-position:
+            </p>
+            <label for="x">x</label>
+            <input id="x" type="range" min="0" max="100">
+            
+            <label for="y">y</label>
+            <input id="y" type="range" min="0" max="100">
+            
+            <p class="mask-size">
+                mask-size:
+            </p>
+            
+            <label for="scale">size</label>
+            <input id="scale" type="range" min="0" max="100">
+            
+            <label>
+                <input type="checkbox" id="repeat"> mask-repeat
+            </label>
+            
+        </div>
+    </div>
+    
+    <!-- clip-pathのサンプル -->
+    <div class="sample sample__clip">
+        <div class="image-wrapper">
+            <img src="https://picsum.photos/id/200/400/300" alt="クリップパス用サンプル画像">
+        </div>
+        
+        <div class="input-wrapper input-wrapper__clip">
+
+            <h2>
+                clip-pathのサンプル
+            </h2>
+
+            <p>
+                <label for="clipPath">パスの形状：</label>
+                
+                <select name="path" id="clipPath">
+                    <option value="inset">inset</option>
+                    <option value="circle">circle</option>
+                    <option value="ellipse">ellipse</option>
+                    <option value="polygon">polygon</option>
+                    <option value="path">path</option>
+                    <option value="svg">画像</option>
+                </select>
+            </p>
+            
+            <p class="input--wrapper_text">
+                <label for="clipText">clip-path：</label>
+                <input id="clipText" type="text">
+            </p>
+            
+            <p>
+                ※パラメーターを直接変更できます
+            </p>
+            
+        </div>
+    
+    </div>
+    
+    
+    <!-- クリップ用SVG -->
+    <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="0"
+        height="0"
+        >
+        <defs>
+            <clipPath id="star">
+                <path d="M109.984,13.838a10,10,0,0,1,17.033,0l30.8,50.04a10,10,0,0,0,6.175,4.481l57.165,13.767a10,10,0,0,1,5.264,16.215L188.293,143a10,10,0,0,0-2.364,7.268l4.548,58.514A10,10,0,0,1,176.7,218.8l-54.385-22.416a10,10,0,0,0-7.622,0L60.3,218.8a10,10,0,0,1-13.781-10.02l4.548-58.514A10,10,0,0,0,48.707,143L10.584,98.34a10,10,0,0,1,5.264-16.215L73.013,68.359a10,10,0,0,0,6.175-4.481Z">
+            </clipPath>
+        </defs>
+    </svg>
+    
+    
+    <!-- background-clip: textのサンプル -->
+    <div class="sample sample__text">
+    
+        <div class="image-wrapper">
+            <span>CLIP</span>
+        </div>
+        
+        <div class="input-wrapper input-wrapper__clip">
+            
+            <h2>
+                background-clip: textのサンプル
+            </h2>
+            
+            <p class="input-wrapper_text">
+                <label class="bgClipLabelX" for="bgClipTextX">background-position-x: </label><br/>
+                <input id="bgClipTextX" type="range" min="0" max="200" value="100"/>
+            </p>
+            
+            <p>
+                <label class="bgClipLabelY" for="bgClipTextY">background-position-y: </label><br/>
+                <input id="bgClipTextY" type="range" min="0" max="200" value="100"/>
+            </p>
+            
+        </div>
+    </div>
+    
+    
+    <!-- キャンバスのマスク -->
+    <canvas width="800" height="600" id="canvas"></canvas>
+        
+    
+<script>
+// ------------------------------
+// マスクのサンプル
+// ------------------------------
+const image = document.querySelector(".sample__mask img");
+const xSlider = document.getElementById("x");
+const ySlider = document.getElementById("y");
+const scaleSlider = document.getElementById("scale");
+const repeatCheckBox = document.getElementById("repeat");
+
+let xValue = 50;
+let yValue = 50;
+let scaleValue = 50;
+let repeat = false;
+
+// 値の表示用
+const maskPositionText = document.querySelector(".mask-position");
+const maskSizeText = document.querySelector(".mask-size");
+
+// mask-positionの設定
+const setMaskPosition = () => {
+    const prop = `${xValue}% ${yValue}%`;
+    image.style.maskPosition = prop;
+    image.style.webkitMaskPosition = prop;
+    maskPositionText.innerText = "mask-position: " + prop;
+}
+
+const setMaskSize = () => {
+    const prop = `${scaleValue}%`;
+    image.style.maskSize = prop;
+    image.style.webkitMaskSize = prop;
+    maskSizeText.innerText = "mask-size: " + prop;
+}
+
+const setRepeat = () => {
+    image.style.maskRepeat = repeat ? "repeat" : "no-repeat";
+    image.style.webkitMaskRepeat = repeat ? "repeat" : "no-repeat";
+}
+
+// Xスライダーの入力時
+xSlider.addEventListener("input", () => {
+    xValue = xSlider.value;
+    setMaskPosition();
+});
+
+// Yスライダーの入力時
+ySlider.addEventListener("input", () => {
+    yValue = ySlider.value;
+    setMaskPosition();
+});
+
+// sclaeスライダーの入力時
+scaleSlider.addEventListener("input", () => {
+    scaleValue = scaleSlider.value;
+    setMaskSize();
+});
+
+// repeatスライダーの入力時
+repeatCheckBox.addEventListener("input", () => {
+    repeat = repeatCheckBox.checked;
+    setRepeat();
+});
+
+// ------------------------------
+// clip-pathのサンプル
+// ------------------------------
+const clipSelector = document.getElementById("clipPath");
+const clipImage = document.querySelector(".sample__clip img");
+const clipText = document.getElementById("clipText");
+
+const setClipPath = (value) => {
+    clipImage.style.clipPath = value;
+    clipText.value = value;
+};
+
+const selectClipPath = () => {
+    const value = clipSelector.value;
+    
+    switch( value ) {
+        case "inset":
+            const insetProp = "inset( 50px round 20px )";
+            setClipPath( insetProp );
+            break;
+    
+        case "circle":
+            const circleProp = "circle( 100px at center )";
+            setClipPath( circleProp );
+            break;
+            
+        case "ellipse":
+            const ellipseProp = "ellipse( 50px 20px at center )";
+            setClipPath( ellipseProp );
+            break;
+            
+        case "polygon":
+            const polygonProp = "polygon( 5% 10%, 94% 10%, 48% 100% )";
+            setClipPath( polygonProp );
+            break;
+            
+        case "path":
+            const pathProp = 'path("M120,32.48 c-31.48,-54.02 -120,-38.25 -120,29.44 0,46.61 55.71,94.27 120,158.08 64.3,-63.81 120,-111.47 120,-158.08 0,-67.92 -88.75, -83.06 -120,-29.44z")';
+            setClipPath( pathProp );
+            break;
+            
+        case "svg":
+            const svgProp = "url( #star )";
+            setClipPath( svgProp );
+            break;
+            
+        default:
+            console.log("存在しないプロパティ");
+            break;
+        
+    }
+};
+
+// パスの計上を変更された場合
+clipSelector.addEventListener("change", () => {
+    selectClipPath();
+});
+
+clipText.addEventListener("input", () => {
+    setClipPath( clipText.value );
+});
+
+
+// ------------------------------
+// background-clip: textのサンプル
+// ------------------------------
+const textClipSliderX = document.getElementById("bgClipTextX");
+const textClipSliderY = document.getElementById("bgClipTextY");
+
+const textX = document.querySelector(".bgClipLabelX");
+const textY = document.querySelector(".bgClipLabelY");
+
+const textClipImage = document.querySelector(".sample__text .image-wrapper");
+
+const setTextClip = () => {
+    textClipImage.style.backgroundPositionX = textClipSliderX.value + "px";
+    textX.innerText = "background-position-x: " + textClipSliderX.value + "px";
+
+    textClipImage.style.backgroundPositionY = textClipSliderY.value + "px";
+    textY.innerText = "background-position-y: " + textClipSliderY.value + "px";
+};
+
+// スライダーの値変更時
+textClipSliderX.addEventListener("input", () => {
+    setTextClip();
+});
+
+textClipSliderY.addEventListener("input", () => {
+    setTextClip();
+});
+
+
+// ------------------------------
+// キャンバス
+// ------------------------------
+const ctx = document.getElementById("canvas").getContext("2d");
+const img = new Image();
+
+img.src = "https://picsum.photos/800/600";
+
+const position = { x: 0, y: 0 };
+
+const drawCircle = () => {
+    ctx.beginPath();
+    ctx.arc( position.x, position.y, 100, 0, 2 * Math.PI, false );
+    ctx.fillStyle = "#000000";
+    ctx.fill();
+};
+
+const draw = () => {
+    ctx.globalCompositeOperation = "source-over";
+    ctx.drawImage( img, 0, 0 );
+    ctx.globalCompositeOperation = "destination-in";
+    drawCircle();
+};
+
+const tick = () => {
+    ctx.clearRect( 0, 0, ctx.canvas.width, ctx.canvas.height );
+    draw();
+    requestAnimationFrame( tick );
+};
+
+ctx.canvas.addEventListener("mousemove", (e) => {
+    const rect = e.target.getBoundingClientRect();
+    
+    position.x = e.clientX - rect.left;
+    position.y = e.clientY - rect.top;
+});
+
+img.onload = function() {
+    tick();
+};
+
+// ------------------------------
+// 初期処理
+// ------------------------------
+const setup = () => {
+    setMaskPosition();
+    setMaskSize();
+    selectClipPath();
+    setTextClip();
+    setRepeat();
+};
+
+setup();
+
+</script>
+    
+</body>
+</html>
