@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    
+    <title>CSS 画像マスクサンプル</title>
+    
+    <style>
+.art {
+  position: relative;
+  width: 500px;
+  height: 300px;
+  margin: 30px auto 0;
+  border-radius: 4px;
+  overflow: hidden;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  
+  background-image:url(//c1.staticflickr.com/3/2839/9581144080_3613848798_n.jpg)
+}
+
+.art:before, .art:after {
+  content: "";
+  position: absolute;
+  background-image: inherit;
+  background-repeat: inherit;
+  background-position: inherit;
+}
+
+.art:before {
+  width: 110%;
+  height: 110%;
+  top: -5%;
+  left: -5%;
+  background-size: cover;
+  filter: blur(10px);
+  /*
+  サイズを少し大きくしてネガティブマージンを取っているのは、
+  blurによるフチのボケを回避してきれいに見せるため。
+  */
+}
+
+.art:after {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+}
+    </style>
+</head>
+<body>
+    
+    <div>
+        <h1>
+            以下のサイトのサンプル<br>
+            https://qiita.com/KazuyoshiGoto/items/dc15cb10af8fdd56e36a
+        </h1>
+    </div>
+    
+    
+    <div
+        class="art"
+        >
+    </div>
+    
+    
+<script>
+
+</script>
+    
+</body>
+</html>
