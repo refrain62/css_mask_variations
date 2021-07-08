@@ -1,0 +1,117 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    
+    <title>ハンバーガーメニュー</title>
+    
+    <style>
+        body {
+            margin: 0;
+            font-size: 2rem;
+            min-height: 100vh;
+            
+            display: flex;
+        }
+        
+        main {
+            width: 700px;
+            marign: 0 auto;
+        }
+        
+        aside {
+            width: 25%;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        div {
+            margin-top: auto;
+            height: 300px;
+        }
+        
+        /* 🍔 */
+        .open,
+        .close {
+            display: none;
+        }
+        
+        input[type="checkbox"] {
+            position: absolute;
+            left: -50px;
+        }
+        
+        @media screen and (max-width: 1000px) {
+            main: {
+                width: 100%;
+                padding-top: 5px;
+            }
+            
+            .open,
+            .close {
+                display: block;
+            }
+            
+            .open {
+                position: absolute;
+            }
+            
+            aside {
+                position: absolute;
+                left: -250;
+                height: 100%;
+                transition: all 0.2s;
+                background: #FFFFFF;
+            }
+            
+            input[type="checkbox"]:checked ~ aside {
+                left: 0;
+            }
+            
+            input[type="checkbox"]:checked ~ .back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.8) !important;
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <!-- 参考： https://github.com/lightsound/html-css-class/blob/master/004_Sidebar-responsive/ -->
+    <input type="checkbox" id="menu" >
+    <label for="menu" class="opton">🍔</label>
+    <label for="menu" class="back"></label>
+    
+    <aside>
+        <label for="menu" class="close">×</label>
+    
+        <nav>
+            <ul>
+                <li>list1</li>
+                <li>list2</li>
+                <li>list3</li>
+                <li>list4</li>
+                <li>list5</li>
+            </ul>
+        </nav>
+        
+        <div>
+            side footer
+        </div>
+    </aside>
+    
+    <main>
+        Main
+    </main>
+    
+</body>
+</html>

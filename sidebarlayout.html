@@ -1,0 +1,65 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    
+    <title>スライドバーレイアウト</title>
+    
+    <style>
+        body {
+            margin: 0;
+            font-size: 2rem;
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        main {
+            width: 700px;
+            marign: 0 auto;
+            /* flex: 1; */
+        }
+        
+        aside {
+            width: 25%;
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        div {
+            margin-top: auto;
+            height: 300px;
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <!-- 参考： https://github.com/lightsound/html-css-class/tree/master/003_Sidebar -->
+    <aside>
+        <nav>
+            <ul>
+                <li>list1</li>
+                <li>list2</li>
+                <li>list3</li>
+                <li>list4</li>
+                <li>list5</li>
+            </ul>
+        </nav>
+        
+        <div>
+            side footer
+        </div>
+    </aside>
+    
+    <main>
+        Main
+    </main>
+    
+</body>
+</html>
