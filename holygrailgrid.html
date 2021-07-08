@@ -1,0 +1,71 @@
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    
+    <title>聖杯Gridレイアウト</title>
+    
+    <style>
+        body {
+            font-size: 2rem;
+            margin: 0 auto;
+            width: 800px;
+            min-height: 100vh;
+            display: grid;
+            grid-template:
+                "... ...... ...... ...... ...... ...... ..." 30px
+                "... header header header header header ..." 150px
+                "... ...... ...... ...... ...... ...... ..." 20px
+                "... left   ...... center ...... right  ..." 1fr
+                "... ...... ...... ...... ...... ...... ..." 10px
+                "... footer footer footer footer footer ... " 300px
+                "... ...... ...... ...... ...... ...... ..." 
+                / auto 150px 20px 1fr 10px 200px auto;
+            
+        }
+        
+        header {
+            grid-area: header;
+        }
+        
+        main {
+            grid-area: center;
+        }
+        
+        nav {
+            grid-area: left;
+        }
+        
+        aside {
+            grid-area: right;
+        }
+    
+        footer {
+            grid-area: footer;
+        }
+    
+        @media screen and ( max-width: 900px ) {
+            body {
+                grid-template:
+                    "header" 150px
+                    "center" 1fr
+                    "left  "
+                    "right "
+                    "footer" 300px
+            }
+        }
+    
+    </style>
+</head>
+<body>
+    
+    <!-- 参考： https://github.com/lightsound/html-css-class/tree/master/002b_%20HolyGrail-grid -->
+    <header>header</header>
+
+    <nav>left</nav>
+    <main>center</main>
+    <aside>right</aside>
+    
+    <footer>footer</footer>
+    
+</body>
+</html>
